@@ -9,4 +9,40 @@
     Так стили написанные ниже будут иметь больший вес,
     чем стили в медиазапросе предпочтений пользователя
   */
+  --accented-text-color: var(--text-color);
+  --text-color: #353430;
+  --accent-color: #ff8dcb;
+  --button-color: var(--text-color);
+  --title-accent-color: var(--text-color);
+  --decor-color: var(--text-color);
+  --decor-color-hover: #35343066;
+  --header-color: #ffc2e6;
+  --main-font: 'IBM Plex mono', sans-serif;
+  --cover-image: url(../images/cover-image-light.png);
+  
+
+  .decor {
+    display: none;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+
+  :root {
+        /* Дублируем переменные светлой темы */
+        --accented-text-color: var(--text-color);
+        --text-color: #353430;
+        --accent-color: #ff8dcb;
+        --button-color: var(--text-color);
+        --title-accent-color: var(--text-color);
+        --decor-color: var(--text-color);
+        --decor-color-hover: #35343066;
+        --header-color: #ffc2e6;
+        --main-font: 'IBM Plex mono', sans-serif;
+        --cover-image: url(../images/cover-image-light.png);
+
+        .decor {
+          display: none;
+        }
+    }
 }
