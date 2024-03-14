@@ -47,4 +47,11 @@
           display: none;
         }
     }
+
+    @media (width >= 768px) {
+
+      :root {
+        --shadow-color: #ff8dcb;
+      }
+    }
 }
