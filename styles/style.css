@@ -3,6 +3,7 @@
 .page {
   /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
   font-family: var(--main-font, sans-serif);
+  background-color: var(--bg-color);
   color: var(--text-color, #f1b2ce);
   padding: 0 clamp(10px, 2.6vi, 20px);
   font-size: 18px;
