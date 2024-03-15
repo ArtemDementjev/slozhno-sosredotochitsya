@@ -81,6 +81,7 @@
 
 .header__theme-menu-button {
   background-color: transparent;
+  cursor: pointer;
   text-transform: lowercase;
   color: var(--button-color, #ff0070);
   border: none;
