@@ -18,7 +18,7 @@
   --decor-color: var(--text-color);
   --decor-color-hover: #35343066;
   --header-color: #ffc2e6;
-  --main-font: 'IBM Plex mono', sans-serif;
+  --main-font: 'IBM Plex mono', monospace;
   --cover-image: url(../images/cover-image-light.png);
 
 

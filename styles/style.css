@@ -2,7 +2,7 @@
 
 .page {
   /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
-  font-family: var(--main-font, sans-serif);
+  font-family: var(--main-font, monospace);
   background-color: var(--bg-color);
   color: var(--text-color, #f1b2ce);
   padding: 0 clamp(10px, 2.6vi, 20px);
@@ -16,13 +16,15 @@
 }
 
 .header {
+  padding: var(--decor-scale) 0;
   position: relative;
   display: grid;
   grid-template-columns: 1fr minmax(355px, 50%);
-  grid-template-rows: var(--header-first-row) var(--header-second-row) min-content;
+  grid-template-rows: 1fr min-content 1fr;
+  height: max(668px, 100vh);
 }
 
-.header::before {
+.decorated-zone::before {
   content: '';
   position: absolute;
   inline-size: 25px;
@@ -33,7 +35,7 @@
   inset-block-start: var(--decor-scale);
 }
 
-.header::after {
+.decorated-zone::after {
   content: '';
   position: absolute;
   inline-size: 25px;
@@ -46,6 +48,7 @@
 
 .decor {
   position: absolute;
+  text-transform: uppercase;
   inset-block-start: var(--decor-scale);
   inset-inline-end: 28px;
   color: var(--accent-color, #ff0070);
@@ -57,7 +60,7 @@
   inline-size: 9px;
   block-size: 9px;
   background-color: var(--accent-color, #ff0070);
-  border-radius: 100%;
+  border-radius: 50%;
   box-shadow: 0 0 4px 2px var(--accent-color, #ff0070);
   inset-block-start: 8px;
   inset-inline-end: -19px;
@@ -66,7 +69,7 @@
 .header__theme-menu {
   grid-row: 1 / 2;
   grid-column: 1 / -1;
-  padding-block-start: var(--menu-block-start-padding);
+  align-self: center;
   justify-self: right;
 }
 
@@ -78,6 +81,7 @@
 
 .header__theme-menu-button {
   background-color: transparent;
+  text-transform: lowercase;
   color: var(--button-color, #ff0070);
   border: none;
   padding: 1.5px 13px;
@@ -91,7 +95,7 @@
 .heading {
   grid-row: 2 / 3;
   grid-column: 1 / -1;
-  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  font-size: var(--logo-size);
   color: var(--header-color, #db00ff);
   text-shadow: 4px 4px 0 var(--shadow-color, #ff0070);
   line-height: 0.83;
@@ -99,9 +103,9 @@
 }
 
 .heading-text {
+  align-self: center;
   grid-row: 3 / 4;
   grid-column: 2 / 3;
-  margin-block-end: var(--heading-block-end-margin);
 }
 
 .header p {
@@ -129,6 +133,16 @@
   color: var(--title-accent-color, #ff0070);
 }
 
+.content__list {
+  display: grid;
+  gap: 20px;
+}
+
+.concentration .content__list {
+  grid-row: 2 / 3;
+  grid-column: 1 / -1;
+}
+
 .title-decor {
   background-color: var(--accent-color, #ff0070);
   color: var(--accented-text-color, #000028);
@@ -140,13 +154,17 @@
 }
 
 .content__card-title {
+  font-size: inherit;
   font-weight: bold;
   margin-block-end: 10px;
 }
 
-.content__advice-title {
-  font-weight: inherit;
-  margin-block-end: 10px;
+.content__card-text:not(:last-child) {
+  margin-block-end: 1em;
+}
+
+.solution .content__card-title {
+  font-weight: normal;
 }
 
 .content__image {
@@ -158,38 +176,19 @@
 }
 
 .footer {
-  color: var(--header-color, #db00ff);
-  text-shadow: 2px 2px 0 var(--shadow-color, #ff0070);
-  line-height: 0.83;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: max(668px, 100vh);
 }
 
 .footer__title {
-  position: relative;
-  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
-  padding: var(--footer-padding);
+  font-size: var(--logo-size);
+  color: var(--header-color, #db00ff);
+  text-shadow: 2px 2px 0 var(--shadow-color, #ff0070);
+  line-height: 0.83;
   text-align: center;
-}
-
-.footer__title::before {
-  content: '';
-  position: absolute;
-  inline-size: 25px;
-  block-size: 25px;
-  border-block-start: 1px solid var(--decor-color, #ff0070);
-  border-inline-end: 1px solid var(--decor-color, #ff0070);
-  inset-inline-end: 0;
-  inset-block-start: var(--decor-scale);
-}
-
-.footer__title::after {
-  content: '';
-  position: absolute;
-  inline-size: 25px;
-  block-size: 25px;
-  border-block-end: 1px solid var(--decor-color, #ff0070);
-  border-inline-start: 1px solid var(--decor-color, #ff0070);
-  inset-inline-start: 0;
-  inset-block-end: var(--decor-scale);
 }
 
 a {
@@ -227,29 +226,20 @@ a:focus-visible {
     grid-template-columns: 1fr 1fr;
   }
 
-  .heading {
-    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
-  }
-
   .content__section {
     grid-template-columns: 1fr 2fr;
   }
 
-  .first-section {
+  .reasons .content__list {
+    grid-column: 2 / -1;
+  }
+
+  .concentration .content__list {
+    grid-template-columns: 1fr;
+  }
+
+  .solution {
     grid-template-rows: repeat(2, auto);
-  }
-
-  .third-section {
-    grid-template-rows: repeat(6, auto);
-  }
-
-  .full-column {
-    grid-row-start: 1;
-    grid-row-end: -1;
-  }
-
-  .full-row {
-    grid-column: 1 / -1;
   }
 
   .landscape {
@@ -269,10 +259,6 @@ a:focus-visible {
     height: 100%;
     object-fit: cover;
   }
-
-  .footer__title {
-    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
-  }
 }
 
 
@@ -282,7 +268,7 @@ a:focus-visible {
     grid-row: 1 / 2;
     grid-column: 1 / -1;
     justify-self: center;
-    align-self: top;
+    align-self: flex-start;
   }
 
   .header__theme-menu-list {
@@ -294,42 +280,39 @@ a:focus-visible {
     grid-template-columns: 1fr 1fr;
   }
 
-  .heading {
-    font-size: 9.8125rem;
-  }
-
   .content__section {
     grid-template-columns: 1fr 1fr 1fr;
   }
 
-  .first-section {
+  .reasons .content__list {
+    grid-column: 2 / -1;
+  }
+
+  .concentration .content__list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .solution {
     grid-template-rows: repeat(2, auto);
   }
 
-  .second-section {
-    grid-template-rows: repeat(2, auto);
+  .content__subtitle {
+    grid-column: 2 / -1;
   }
 
-  .third-section {
-    grid-template-rows: repeat(6, auto);
+  .solution .content__list {
+    grid-column: 2 / 4;
+    grid-row: 2 / 3;
   }
 
-  .full-column {
+  .solution .content__title {
     grid-row-start: 1;
     grid-row-end: -1;
-  }
-
-  .full-row {
-    grid-row: 2 / 3;
   }
 
   .pictures .content__title {
     grid-column: 1 / -1;
     grid-row: auto;
-  }
-
-  .rest-row {
-    grid-column: span 2;
   }
 
   .landscape {
@@ -347,9 +330,5 @@ a:focus-visible {
   .content__image {
     height: 100%;
     object-fit: cover;
-  }
-
-  .footer__title {
-    font-size: 9.8125rem;
   }
 }
